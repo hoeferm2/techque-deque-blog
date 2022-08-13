@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS techque_db;
+
+CREATE DATABASE techque_db;
