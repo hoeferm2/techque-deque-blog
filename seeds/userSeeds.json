@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Ford",
+        "email": "samavati@comcast.net",
+        "password": "password"
+    },
+    {
+        "name": "Honda",
+        "email": "weidai@optonline.net",
+        "password": "password"
+    },
+    {
+        "name": "Honda",
+        "email": "tmccarth@me.com",
+        "password": "password"
+    },
+    {
+        "name": "Toyota",
+        "email": "spadkins@optonline.net",
+        "password": "password"
+    },
+    {
+        "name": "Toyota",
+        "email": "kempsonc@yahoo.com",
+        "password": "password"
+    },
+    {
+        "name": "Subaru",
+        "email": "kewley@gmail.com",
+        "password": "password"
+    }
+]
