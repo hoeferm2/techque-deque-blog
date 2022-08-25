@@ -1,28 +1,20 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-const bcrypt = require('bcrypt');
 
-// create our User model
-class User extends Model {
-    // set up method to run on instance data (per user) to check password
-    checkPassword(loginPw) {
-        return bcrypt.compareSync(loginPw, this.password);
-    }
-}
+const sequelize = require('../config/connection.js');
 
+class User extends Model { }
 
 User.init(
     {
-
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
-        username: {
+        name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
@@ -34,31 +26,24 @@ User.init(
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
             validate: {
-                len: [8]
-            }
-        }
+                len: [8],
+            },
+            post_id: {
+                type: DataTypes.INTEGER,
+                references: {
+                    model: 'post',
+                    key: 'id',
+                },
+            },
+        },
     },
     {
-        hooks: {
-            // set up beforeCreate lifecycle "hook" functionality
-            async beforeCreate(newUserData) {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                return newUserData;
-            },
-            // set up beforeUpdate lifecycle "hook" functionality
-            async beforeUpdate(updatedUserData) {
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                return updatedUserData;
-            }
-        },
-
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'user'
+        modelName: 'user',
     }
 );
 
