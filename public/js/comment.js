@@ -1,20 +1,16 @@
 const commentFormHandler = async (event) => {
     event.preventDefault();
 
-    // TODO: delcare postId here to get its .value
-    // const postString = window.location.href
-    // console.log(postString)
-    // const postId = postString.slice(postString.length, postString.length)
-    // console.log(postId)
+    const postString = window.location.href
+    const post_id = postString.substring(postString.length - 1, postString.length)
     const commentText = document.querySelector('#comment-text').value.trim();
-    console.log(commentText)
 
-    if (commentText && postId) {
+
+    if (post_id && commentText) {
         await fetch('/api/comment', {
             method: 'POST',
             body: JSON.stringify({
-                // TODO: declate postId var to get iits input val so it can be passed here
-                // post_Id,
+                post_id,
                 commentText,
             }),
             headers: {
@@ -22,7 +18,7 @@ const commentFormHandler = async (event) => {
             },
         })
 
-        document.location.reload();
+        document.location.replace('/')
         // const response = await fetch(`/api/post/:id/comment`, {
         //     method: 'POST',
         //     body: JSON.stringify({ commentText }),

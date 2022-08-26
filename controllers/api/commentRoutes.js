@@ -23,15 +23,8 @@ router.get("/:id", (req, res) => {
 });
 
 
-router.get("post/:id/comment/:id", (req, res) => {
-    Comment.findOne().then(data => {
-        res.json(data)
-    }).catch(err => {
-        res.status(500).json({ msg: "womp womp", err })
-    })
-});
 
-router.post('post/:id/comment', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const newComment = await Comment.create({
             ...req.body,

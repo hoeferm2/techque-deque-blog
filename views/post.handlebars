@@ -20,4 +20,22 @@
 </p>
 </div>
 
+<div class="text-center">
+    {{#each comments as |comment| }}
+    <div class="row mb-4 post">
+        <div class="col-md-5">
+            <h2>
+                {{{get_emoji}}}
+                <a href="/post/{{post.id}}/comment/{{comment.id}}">{{post.name}}</a>
+            </h2>
+        </div>
+        <div class="col-md-7">
+            <p>
+                {{commentText}}
+            </p>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
 <script src="/js/comment.js"></script>
