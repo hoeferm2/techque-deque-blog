@@ -1,7 +1,7 @@
-const newFormHandler = async (event) => {
+const commentFormHandler = async (event) => {
     event.preventDefault();
 
-    const commentText = document.querySelector('#comment-commentText').value.trim();
+    const commentText = document.querySelector('#comment-text').value.trim();
 
     if (commentText) {
         const response = await fetch(`/api/post/:id/comment`, {
@@ -23,5 +23,5 @@ const newFormHandler = async (event) => {
 
 document
     .querySelector('.new-comment-form')
-    .addEventListener('click', newFormHandler);
+    .addEventListener('click', commentFormHandler);
 
