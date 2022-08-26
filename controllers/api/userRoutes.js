@@ -1,5 +1,32 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, } = require('../../models');
+
+
+// GET all USERS
+
+router.get("/", (req, res) => {
+  User.findAll({
+    include: [Post,]
+  }).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.status(500).json({ msg: "womp womp", err })
+  })
+})
+
+// GET one USER
+
+router.get("/:id", (req, res) => {
+  User.findOne({
+    include: [Post,]
+  }).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.status(500).json({ msg: "womp womp", err })
+  })
+})
+
+//POST/CREATE a USER
 
 router.post('/', async (req, res) => {
   try {
@@ -17,6 +44,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// LOGIN a USER
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });

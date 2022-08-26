@@ -42,5 +42,5 @@ app.use(routes);
 
 // Force: is a method that resets dB information, true wipes it, false does not.
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Now listening on Port ${PORT}`));
 });
